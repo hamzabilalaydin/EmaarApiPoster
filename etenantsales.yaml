@@ -1,0 +1,794 @@
+openapi: 3.0.0
+info:
+  version: "1.0"
+  title: e-Tenant Push Sales API V5
+  description: >-
+    This API helps the consumers to send daily sales and monthly sales
+    information. Please go through the specification below to understand more on
+    what the API has to offer.
+
+    For any technical support write to our support team at SOASupport@emaar.ae
+  contact: {}
+paths:
+  /casualsales:
+    post:
+      security:
+        - api_key: []
+      description: This API enables users to push monthly sales information
+      summary: https://apidev.emaar.com/etenantsales/casualsales
+      tags:
+        - Misc
+      operationId: MonthlysalesPost
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MonthlySalesRequest"
+            examples:    
+              MonthlySalesDefault:   
+                value:
+                  SalesDataCollection:
+                    SalesInfo:
+                      - UnitNo: TDM-FF-121
+                        LeaseCode: t0004680
+                        SalesDateFrom: 2019-05-01
+                        SalesDateTo: 2019-05-31
+                        TransactionCount: 213
+                        TotalSales: 5432
+                        Remarks: Remarks
+              MonthlySalesForFoodsAndBeverage:       
+                value:
+                  SalesDataCollection: 
+                    SalesInfo: 
+                      - UnitNo: TDM-FF-121          
+                        LeaseCode: t0004680
+                        SalesDateFrom: 2019-05-01
+                        SalesDateTo: 2019-05-31
+                        TransactionCount: 213          
+                        TotalSales: 5432
+                        Remarks: Remarks
+                        FandBSplit: 
+                          - Ch_Deliveroo: 100
+                            Ch_DineIn: 100
+                            Ch_Talabat: 100
+                            Ch_CleanEatMe: 100
+                            Ch_Noon: 100
+                            Ch_MunchOn: 100        
+                            Ch_CareemNOW: 100
+                            Ch_EatEasy: 100
+                            Ch_UberEat: 100
+                            Ch_OwnDelivery: 100
+                            Ch_NowNow: 100
+                            Ch_Amazon: 100
+                            Ch_CofeApp: 100
+                            Ch_Instashop: 100
+                            Ch_Tawseel: 100
+                            Ch_Kitopi: 100
+                            Ch_ChatFood: 100
+                            Ch_EMAREAT: 100
+                            Ch_Foodate: 100
+                            Ch_CoffeePik: 100
+                            Ch_Drivu: 100
+                            Ch_Littlemees: 100 
+                            Ch_Swan: 100
+                            Ch_JoiGifts: 100
+                            Ch_Smiles: 100
+                            Ch_Entertainer: 100
+                            Ch_Cari: 100
+                            Ch_Deliveroocnt: 9
+                            Ch_DineIncnt: 9
+                            Ch_Talabatcnt: 9
+                            Ch_CleanEatMecnt: 9  
+                            Ch_Nooncnt: 9
+                            Ch_MunchOncnt: 9        
+                            Ch_CareemNOWcnt: 9
+                            Ch_EatEasycnt: 9
+                            Ch_UberEatcnt: 9
+                            Ch_OwnDeliverycnt: 9
+                            Ch_NowNowcnt: 9
+                            Ch_Amazoncnt: 9
+                            Ch_CofeAppcnt: 9
+                            Ch_Instashopcnt: 9
+                            Ch_Tawseelcnt: 9
+                            Ch_Kitopicnt: 9
+                            Ch_ChatFoodcnt: 9
+                            Ch_EMAREATcnt: 9
+                            Ch_Foodatecnt: 9
+                            Ch_CoffeePikcnt: 9
+                            Ch_Drivucnt: 9
+                            Ch_Littlemeescnt: 9 
+                            Ch_Swancnt: 9
+                            Ch_JoiGiftscnt: 9
+                            Ch_Smilescnt: 9  
+                            Ch_Entertainercnt: 9
+                            Ch_Caricnt: 9
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+  /dailysales:
+    post:
+      security:
+        - api_key: []
+      description: This API enables users to push daily sales information
+      summary: https://apidev.emaar.com/etenantsales/dailysales
+      tags:
+        - Misc
+      operationId: DailysalesPost
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DailySalesRequest"
+            examples:    
+              MonthlySalesDefault:   
+                value:
+                  SalesDataCollection:
+                    SalesInfo:
+                      - UnitNo: TDM-FF-121
+                        LeaseCode: t0004680
+                        SalesDate: 2019-05-20
+                        TransactionCount: 213
+                        NetSales: 5432
+              MonthlySalesForFoodsAndBeverage:       
+                value:
+                  SalesDataCollection: 
+                    SalesInfo: 
+                      - UnitNo: TDM-FF-121          
+                        LeaseCode: t0004680
+                        SalesDate: 2019-05-20
+                        TransactionCount: 213          
+                        NetSales: 5432
+                        FandBSplit: 
+                          - Ch_Deliveroo: 100
+                            Ch_DineIn: 100
+                            Ch_Talabat: 100
+                            Ch_CleanEatMe: 100
+                            Ch_Noon: 100
+                            Ch_MunchOn: 100        
+                            Ch_CareemNOW: 100
+                            Ch_EatEasy: 100
+                            Ch_UberEat: 100
+                            Ch_OwnDelivery: 100
+                            Ch_NowNow: 100
+                            Ch_Amazon: 100
+                            Ch_CofeApp: 100
+                            Ch_Instashop: 100
+                            Ch_Tawseel: 100
+                            Ch_Kitopi: 100
+                            Ch_ChatFood: 100
+                            Ch_EMAREAT: 100
+                            Ch_Foodate: 100
+                            Ch_CoffeePik: 100
+                            Ch_Drivu: 100
+                            Ch_Littlemees: 100  
+                            Ch_Swan: 100
+                            Ch_JoiGifts: 100
+                            Ch_Smiles: 100  
+                            Ch_Entertainer: 100
+                            Ch_Cari: 100
+                            Ch_Deliveroocnt: 9
+                            Ch_DineIncnt: 9
+                            Ch_Talabatcnt: 9
+                            Ch_CleanEatMecnt: 9  
+                            Ch_Nooncnt: 9
+                            Ch_MunchOncnt: 9        
+                            Ch_CareemNOWcnt: 9
+                            Ch_EatEasycnt: 9
+                            Ch_UberEatcnt: 9
+                            Ch_OwnDeliverycnt: 9
+                            Ch_NowNowcnt: 9
+                            Ch_Amazoncnt: 9
+                            Ch_CofeAppcnt: 9
+                            Ch_Instashopcnt: 9
+                            Ch_Tawseelcnt: 9
+                            Ch_Kitopicnt: 9
+                            Ch_ChatFoodcnt: 9
+                            Ch_EMAREATcnt: 9
+                            Ch_Foodatecnt: 9
+                            Ch_CoffeePikcnt: 9
+                            Ch_Drivucnt: 9
+                            Ch_Littlemeescnt: 9   
+                            Ch_Swancnt: 9
+                            Ch_JoiGiftscnt: 9
+                            Ch_Smilescnt: 9    
+                            Ch_Entertainercnt: 9
+                            Ch_Caricnt: 9
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+tags:
+  - name: Misc
+    description: ""
+servers:
+  - url: https://apidev.emaar.com/etenantsales
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: x-apikey
+      in: header
+  schemas:
+    MonthlySalesRequest:
+      title: MonthlySalesRequestForFoodAndBeverage
+      example:    
+        SalesDataCollection: 
+          SalesInfo: 
+            - UnitNo: TDM-FF-121          
+              LeaseCode: t0004680
+              SalesDateFrom: 2019-05-01
+              SalesDateTo: 2019-05-31
+              TransactionCount: 213
+              TotalSales: 5432
+              Remarks: Remarks
+              FandBSplit: 
+                - Ch_Deliveroo: 100
+                  Ch_DineIn: 100
+                  Ch_Talabat: 100
+                  Ch_CleanEatMe: 100
+                  Ch_Noon: 100
+                  Ch_MunchOn: 100        
+                  Ch_CareemNOW: 100
+                  Ch_EatEasy: 100
+                  Ch_UberEat: 100
+                  Ch_OwnDelivery: 100
+                  Ch_NowNow: 100
+                  Ch_Amazon: 100
+                  Ch_CofeApp: 100
+                  Ch_Instashop: 100
+                  Ch_Tawseel: 100
+                  Ch_Kitopi: 100
+                  Ch_ChatFood: 100
+                  Ch_EMAREAT: 100
+                  Ch_Foodate: 100
+                  Ch_CoffeePik: 100
+                  Ch_Drivu: 100
+                  Ch_Littlemees: 100
+                  Ch_Swan: 100
+                  Ch_JoiGifts: 100
+                  Ch_Smiles: 100
+                  Ch_Entertainer: 100
+                  Ch_Cari: 100
+                  Ch_Deliveroocnt: 9
+                  Ch_DineIncnt: 9
+                  Ch_Talabatcnt: 9
+                  Ch_CleanEatMecnt: 9  
+                  Ch_Nooncnt: 9
+                  Ch_MunchOncnt: 9        
+                  Ch_CareemNOWcnt: 9
+                  Ch_EatEasycnt: 9
+                  Ch_UberEatcnt: 9
+                  Ch_OwnDeliverycnt: 9
+                  Ch_NowNowcnt: 9
+                  Ch_Amazoncnt: 9
+                  Ch_CofeAppcnt: 9
+                  Ch_Instashopcnt: 9
+                  Ch_Tawseelcnt: 9
+                  Ch_Kitopicnt: 9
+                  Ch_ChatFoodcnt: 9
+                  Ch_EMAREATcnt: 9
+                  Ch_Foodatecnt: 9
+                  Ch_CoffeePikcnt: 9
+                  Ch_Drivucnt: 9
+                  Ch_Littlemeescnt: 9 
+                  Ch_Swancnt: 9
+                  Ch_JoiGiftscnt: 9
+                  Ch_Smilescnt: 9  
+                  Ch_Entertainercnt: 9
+                  Ch_Caricnt: 9
+      type: object
+      properties:
+        SalesDataCollection:
+          $ref: "#/components/schemas/MonthlySalesDataCollection"
+      required:
+        - SalesDataCollection
+    MonthlySalesDataCollection:
+      title: MonthlySalesDataCollection
+      example:
+        SalesInfo:
+          - UnitNo: TDM-FF-121
+            LeaseCode: t0004680
+            SalesDateFrom: 2019-05-01
+            SalesDateTo: 2019-05-31
+            TransactionCount: 213
+            TotalSales: 5432
+            Remarks: Remarks
+      type: object
+      properties:
+        SalesInfo:
+          type: array
+          items:
+            $ref: "#/components/schemas/MonthlySalesInfo"
+      required:
+        - SalesInfo
+    MonthlySalesInfo:
+      title: MonthlySalesInfo
+      example:
+        UnitNo: TDM-FF-121
+        LeaseCode: t0004680
+        SalesDateFrom: 2019-05-01
+        SalesDateTo: 2019-05-31
+        TransactionCount: 213
+        TotalSales: 5432
+        Remarks: Remarks
+      type: object
+      properties:
+        UnitNo:
+          type: string
+        LeaseCode:
+          type: string
+        SalesDateFrom:
+          type: string
+        SalesDateTo:
+          type: string
+        TransactionCount:
+          type: string
+        TotalSales:
+          type: string
+        Remarks:
+          type: string
+        FandBSplit:
+          $ref: '#/components/schemas/MonthlySalesFandBSplitInfo'        
+      required:
+        - UnitNo
+        - LeaseCode
+        - SalesDateFrom
+        - SalesDateTo
+        - TransactionCount
+        - TotalSales
+        - Remarks
+    MonthlySalesFandBSplitInfo:
+      title: MonthlySalesFandBSplitInfo
+      example:
+        Ch_Deliveroo: 100
+        Ch_DineIn: 100
+        Ch_Talabat: 100
+        Ch_CleanEatMe: 100
+        Ch_Noon: 100
+        Ch_MunchOn: 100        
+        Ch_CareemNOW: 100
+        Ch_EatEasy: 100
+        Ch_UberEat: 100
+        Ch_OwnDelivery: 100
+        Ch_NowNow: 100
+        Ch_Amazon: 100
+        Ch_CofeApp: 100
+        Ch_Instashop: 100
+        Ch_Tawseel: 100
+        Ch_Kitopi: 100
+        Ch_ChatFood: 100
+        Ch_EMAREAT: 100
+        Ch_Foodate: 100
+        Ch_CoffeePik: 100
+        Ch_Drivu: 100
+        Ch_Littlemees: 100
+        Ch_Swan: 100
+        Ch_JoiGifts: 100
+        Ch_Smiles: 100  
+        Ch_Entertainer: 100
+        Ch_Cari: 100
+        Ch_Deliveroocnt: 9
+        Ch_DineIncnt: 9
+        Ch_Talabatcnt: 9
+        Ch_CleanEatMecnt: 9  
+        Ch_Nooncnt: 9
+        Ch_MunchOncnt: 9        
+        Ch_CareemNOWcnt: 9
+        Ch_EatEasycnt: 9
+        Ch_UberEatcnt: 9
+        Ch_OwnDeliverycnt: 9
+        Ch_NowNowcnt: 9
+        Ch_Amazoncnt: 9
+        Ch_CofeAppcnt: 9
+        Ch_Instashopcnt: 9
+        Ch_Tawseelcnt: 9
+        Ch_Kitopicnt: 9
+        Ch_ChatFoodcnt: 9
+        Ch_EMAREATcnt: 9
+        Ch_Foodatecnt: 9
+        Ch_CoffeePikcnt: 9
+        Ch_Drivucnt: 9
+        Ch_Littlemeescnt: 9   
+        Ch_Swancnt: 9
+        Ch_JoiGiftscnt: 9
+        Ch_Smilescnt: 9  
+        Ch_Entertainercnt: 9
+        Ch_Caricnt: 9
+      type: object
+      properties:
+        Ch_Deliveroo:
+          type: string
+        Ch_DineIn:
+          type: string
+        Ch_Talabat:
+          type: string
+        Ch_CleanEatMe:
+          type: string
+        Ch_Noon:
+          type: string
+        Ch_MunchOn:
+          type: string
+        Ch_CareemNOW:
+          type: string
+        Ch_EatEasy:
+          type: string
+        Ch_UberEat:
+          type: string
+        Ch_OwnDelivery:
+          type: string
+        Ch_NowNow:
+          type: string
+        Ch_Amazon:
+          type: string
+        Ch_CofeApp:
+          type: string
+        Ch_Instashop:
+          type: string
+        Ch_Tawseel:
+          type: string
+        Ch_Kitopi:
+          type: string
+        Ch_ChatFood:
+          type: string
+        Ch_EMAREAT:
+          type: string
+        Ch_Foodate:
+          type: string
+        Ch_CoffeePik:
+          type: string
+        Ch_Drivu:
+          type: string
+        Ch_Littlemees:
+          type: string  
+        Ch_Swan:
+          type: string
+        Ch_JoiGifts:
+          type: string
+        Ch_Smiles:
+          type: string  
+        Ch_Entertainer:
+          type: string 
+        Ch_Cari:
+          type: string  
+        Ch_Deliveroocnt:
+          type: string
+        Ch_DineIncnt:
+          type: string
+        Ch_Talabatcnt:
+          type: string
+        Ch_CleanEatMecnt:
+          type: string
+        Ch_Nooncnt:
+          type: string
+        Ch_MunchOncnt:
+          type: string
+        Ch_CareemNOWcnt:
+          type: string
+        Ch_EatEasycnt:
+          type: string
+        Ch_UberEatcnt:
+          type: string
+        Ch_OwnDeliverycnt:
+          type: string
+        Ch_NowNowcnt:
+          type: string       
+        Ch_Amazoncnt:
+          type: string
+        Ch_CofeAppcnt:
+          type: string
+        Ch_Instashopcnt:
+          type: string
+        Ch_Tawseelcnt:
+          type: string
+        Ch_Kitopicnt:
+          type: string
+        Ch_ChatFoodcnt:
+          type: string
+        Ch_EMAREATcnt:
+          type: string
+        Ch_Foodatecnt:
+          type: string
+        Ch_CoffeePikcnt:
+          type: string
+        Ch_Drivucnt:
+          type: string
+        Ch_Littlemeescnt:
+          type: string   
+        Ch_Swancnt: 
+          type: string
+        Ch_JoiGiftscnt: 
+          type: string
+        Ch_Smilescnt:
+          type: string  
+        Ch_Entertainercnt:
+          type: string
+        Ch_Caricnt:
+          type: string  
+    DailySalesRequest:
+      title: DailySalesRequestForFoodAndBeverage
+      example:    
+        SalesDataCollection: 
+          SalesInfo: 
+            - UnitNo: TDM-FF-121          
+              LeaseCode: t0004680
+              SalesDate: 2019-05-20
+              TransactionCount: 213
+              NetSales: 5432
+              FandBSplit: 
+                - Ch_Deliveroo: 100
+                  Ch_DineIn: 100
+                  Ch_Talabat: 100
+                  Ch_CleanEatMe: 100
+                  Ch_Noon: 100
+                  Ch_MunchOn: 100        
+                  Ch_CareemNOW: 100
+                  Ch_EatEasy: 100
+                  Ch_UberEat: 100
+                  Ch_OwnDelivery: 100
+                  Ch_NowNow: 100
+                  Ch_Amazon: 100
+                  Ch_CofeApp: 100
+                  Ch_Instashop: 100
+                  Ch_Tawseel: 100
+                  Ch_Kitopi: 100
+                  Ch_ChatFood: 100
+                  Ch_EMAREAT: 100
+                  Ch_Foodate: 100
+                  Ch_CoffeePik: 100
+                  Ch_Drivu: 100
+                  Ch_Littlemees: 100
+                  Ch_Swan: 100
+                  Ch_JoiGifts: 100
+                  Ch_Smiles: 100
+                  Ch_Entertainer: 100
+                  Ch_Cari: 100
+                  Ch_Deliveroocnt: 9
+                  Ch_DineIncnt: 9
+                  Ch_Talabatcnt: 9
+                  Ch_CleanEatMecnt: 9  
+                  Ch_Nooncnt: 9
+                  Ch_MunchOncnt: 9        
+                  Ch_CareemNOWcnt: 9
+                  Ch_EatEasycnt: 9
+                  Ch_UberEatcnt: 9
+                  Ch_OwnDeliverycnt: 9
+                  Ch_NowNowcnt: 9
+                  Ch_Amazoncnt: 9
+                  Ch_CofeAppcnt: 9
+                  Ch_Instashopcnt: 9
+                  Ch_Tawseelcnt: 9
+                  Ch_Kitopicnt: 9
+                  Ch_ChatFoodcnt: 9
+                  Ch_EMAREATcnt: 9
+                  Ch_Foodatecnt: 9
+                  Ch_CoffeePikcnt: 9
+                  Ch_Drivucnt: 9
+                  Ch_Littlemeescnt: 9
+                  Ch_Swancnt: 9
+                  Ch_JoiGiftscnt: 9
+                  Ch_Smilescnt: 9
+                  Ch_Entertainercnt: 9
+                  Ch_Caricnt: 9
+      type: object
+      properties:
+        SalesDataCollection:
+          $ref: "#/components/schemas/DailySalesDataCollection"
+      required:
+        - SalesDataCollection
+    DailySalesDataCollection:
+      title: DailySalesDataCollection
+      example:
+        SalesInfo:
+          - UnitNo: TDMS-GF-ATM 01
+            LeaseCode: t0004684
+            SalesDate: 2019-05-29
+            TransactionCount: 23423
+            NetSales: 213213
+      type: object
+      properties:
+        SalesInfo:
+          type: array
+          items:
+            $ref: "#/components/schemas/DailySalesInfo"
+      required:
+        - SalesInfo
+    DailySalesInfo:
+      title: DailySalesInfo
+      example:
+        UnitNo: TDMS-GF-ATM 01
+        LeaseCode: t0004684
+        SalesDate: 2019-05-29
+        TransactionCount: 23423
+        NetSales: 213213
+      type: object
+      properties:
+        UnitNo:
+          type: string
+        LeaseCode:
+          type: string
+        SalesDate:
+          type: string
+        TransactionCount:
+          type: string
+        NetSales:
+          type: string
+        FandBSplit:
+          $ref: '#/components/schemas/DailySalesFandBSplitInfo'          
+      required:
+        - UnitNo
+        - LeaseCode
+        - SalesDate
+        - TransactionCount
+        - NetSales
+    DailySalesFandBSplitInfo:
+      title: DailySalesFandBSplitInfo
+      example:
+        Ch_Deliveroo: 100
+        Ch_DineIn: 100
+        Ch_Talabat: 100
+        Ch_CleanEatMe: 100
+        Ch_Noon: 100
+        Ch_MunchOn: 100        
+        Ch_CareemNOW: 100
+        Ch_EatEasy: 100
+        Ch_UberEat: 100
+        Ch_OwnDelivery: 100
+        Ch_NowNow: 100
+        Ch_Amazon: 100
+        Ch_CofeApp: 100
+        Ch_Instashop: 100
+        Ch_Tawseel: 100
+        Ch_Kitopi: 100
+        Ch_ChatFood: 100
+        Ch_EMAREAT: 100
+        Ch_Foodate: 100
+        Ch_CoffeePik: 100
+        Ch_Drivu: 100
+        Ch_Littlemees: 100
+        Ch_Swan: 100
+        Ch_JoiGifts: 100
+        Ch_Smiles: 100  
+        Ch_Entertainer: 100
+        Ch_Cari: 100
+        Ch_Deliveroocnt: 9
+        Ch_DineIncnt: 9
+        Ch_Talabatcnt: 9
+        Ch_CleanEatMecnt: 9  
+        Ch_Nooncnt: 9
+        Ch_MunchOncnt: 9        
+        Ch_CareemNOWcnt: 9
+        Ch_EatEasycnt: 9
+        Ch_UberEatcnt: 9
+        Ch_OwnDeliverycnt: 9
+        Ch_NowNowcnt: 9
+        Ch_Amazoncnt: 9
+        Ch_CofeAppcnt: 9
+        Ch_Instashopcnt: 9
+        Ch_Tawseelcnt: 9
+        Ch_Kitopicnt: 9
+        Ch_ChatFoodcnt: 9
+        Ch_EMAREATcnt: 9
+        Ch_Foodatecnt: 9
+        Ch_CoffeePikcnt: 9
+        Ch_Drivucnt: 9
+        Ch_Littlemeescnt: 9   
+        Ch_Swancnt: 9
+        Ch_JoiGiftscnt: 9
+        Ch_Smilescnt: 9  
+        Ch_Entertainercnt: 9
+        Ch_Caricnt: 9
+      type: object
+      properties:
+        Ch_Deliveroo:
+          type: string
+        Ch_DineIn:
+          type: string
+        Ch_Talabat:
+          type: string
+        Ch_CleanEatMe:
+          type: string
+        Ch_Noon:
+          type: string
+        Ch_MunchOn:
+          type: string
+        Ch_CareemNOW:
+          type: string
+        Ch_EatEasy:
+          type: string
+        Ch_UberEat:
+          type: string
+        Ch_OwnDelivery:
+          type: string
+        Ch_NowNow:
+          type: string
+        Ch_Amazon:
+          type: string
+        Ch_CofeApp:
+          type: string
+        Ch_Instashop:
+          type: string
+        Ch_Tawseel:
+          type: string
+        Ch_Kitopi:
+          type: string
+        Ch_ChatFood:
+          type: string
+        Ch_EMAREAT:
+          type: string
+        Ch_Foodate:
+          type: string
+        Ch_CoffeePik:
+          type: string
+        Ch_Drivu:
+          type: string
+        Ch_Littlemees:
+          type: string   
+        Ch_Swan:
+          type: string
+        Ch_JoiGifts:
+          type: string
+        Ch_Smiles:
+          type: string  
+        Ch_Entertainer:
+          type: string
+        Ch_Cari:
+          type: string  
+        Ch_Deliveroocnt:
+          type: string
+        Ch_DineIncnt:
+          type: string
+        Ch_Talabatcnt:
+          type: string
+        Ch_CleanEatMecnt:
+          type: string
+        Ch_Nooncnt:
+          type: string
+        Ch_MunchOncnt:
+          type: string
+        Ch_CareemNOWcnt:
+          type: string
+        Ch_EatEasycnt:
+          type: string
+        Ch_UberEatcnt:
+          type: string
+        Ch_OwnDeliverycnt:
+          type: string
+        Ch_NowNowcnt:
+          type: string       
+        Ch_Amazoncnt:
+          type: string
+        Ch_CofeAppcnt:
+          type: string
+        Ch_Instashopcnt:
+          type: string
+        Ch_Tawseelcnt:
+          type: string
+        Ch_Kitopicnt:
+          type: string
+        Ch_ChatFoodcnt:
+          type: string
+        Ch_EMAREATcnt:
+          type: string
+        Ch_Foodatecnt:
+          type: string
+        Ch_CoffeePikcnt:
+          type: string
+        Ch_Drivucnt:
+          type: string
+        Ch_Littlemeescnt:
+          type: string 
+        Ch_Swancnt:
+          type: string
+        Ch_JoiGiftscnt:
+          type: string
+        Ch_Smilescnt:
+          type: string  
+        Ch_Entertainercnt:
+          type: string
+        Ch_Caricnt:
+          type: string   
