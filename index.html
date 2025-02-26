@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <button onclick="execute()">Execute</button>
+  
+  <script>
+
+    function execute() {
+      const url = "https://apidev.emaar.com/etenantsales/dailysales";
+      const options = {
+        method: "POST",
+        headers: {
+          "x-apikey": "HsNLJ3MwRSlsh4ITKrOmsPAxIO7JSSrn",
+          "Accept": "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      "SalesDataCollection": {
+        "SalesInfo": [
+          {
+            "UnitNo": "TDM-FF-121",
+            "LeaseCode": "t0004680",
+            "SalesDate": "2025-05-20",
+            "TransactionCount": "213",
+            "NetSales": "5432"
+          }
+        ]
+      }
+    }),
+  };
+  fetch(url, options).then(
+    response => {
+      if (response.ok) {
+        return response.text();
+      }
+      return response.text().then(err => {
+        return Promise.reject({
+          status: response.status,
+          statusText: response.statusText,
+          errorMessage: err,
+        });
+      });
+    })
+    .then(data => {
+      console.log("1")
+      console.log(data);
+    })
+    .catch(err => {
+      console.log("2")
+      console.error(err);
+    });
+  }
+  
+</script>
+
+</body>
+  </html>
