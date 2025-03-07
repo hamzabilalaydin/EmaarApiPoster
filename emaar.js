@@ -31,12 +31,20 @@ const yyyyYesterday = yesterday.getFullYear();
 const formattedYesterday = `${mmYesterday}/${ddYesterday}/${yyyyYesterday}`;
 
 
+let toplamFis;
+let gunlukCiro;
+let toplamKDV;
+
 const config = {
-    server: "localhost",
+    server: "10.0.0.64",
     database: "NCR",
     driver: "msnodesqlv8",
     options: {
-        trustedConnection: true // Uses,                                                                                                             
+        trustedConnection: true // Uses,                                                                                     
+
+                                                                                                                             
+
+                                
     }
 };
 
@@ -45,9 +53,9 @@ async function connectDB() {
         let pool = await sql.connect(config);
         console.log("Connected to MSSQL using Windows Authentication!");
 
-        const toplamFis = await pool.request().query('SELECT COUNT(DT) AS Fis_Toplam FROM NCR.dbo.TDT_HEADER WHERE STR = 1033 AND AMT > 0 AND CAST(DT AS DATE) = CAST(DATEADD(DAY, -1, GETDATE()) AS DATE);');
-        const gunlukCiro = await pool.request().query('SELECT SUM(AMT) AS Satis_Toplam FROM NCR.dbo.TDT_HEADER WHERE STR = 1033 AND AMT != 0 AND CAST(DT AS DATE) = CAST(DATEADD(DAY, -1, GETDATE()) AS DATE)');
-        const toplamKDV = await pool.request().query('SELECT SUM(T_VAT) AS KDV_Toplam FROM NCR.dbo.TDT_TRX WHERE T_STR = 1033 AND T_AMOUNT != 0 AND CAST(DT AS DATE) = CAST(DATEADD(DAY, -1, GETDATE()) AS DATE)')
+        toplamFis = await pool.request().query('SELECT COUNT(DT) AS Fis_Toplam FROM NCR.dbo.TDT_HEADER WHERE STR = 1033 AND AMT > 0 AND CAST(DT AS DATE) = CAST(DATEADD(DAY, -1, GETDATE()) AS DATE);');
+        gunlukCiro = await pool.request().query('SELECT SUM(AMT) AS Satis_Toplam FROM NCR.dbo.TDT_HEADER WHERE STR = 1033 AND AMT != 0 AND CAST(DT AS DATE) = CAST(DATEADD(DAY, -1, GETDATE()) AS DATE)');
+        toplamKDV = await pool.request().query('SELECT SUM(T_VAT) AS KDV_Toplam FROM NCR.dbo.TDT_TRX WHERE T_STR = 1033 AND T_AMOUNT != 0 AND CAST(DT AS DATE) = CAST(DATEADD(DAY, -1, GETDATE()) AS DATE)')
 
         gunlukCiro = roundUpToDecimal(gunlukCiro.recordset[0].Satis_Toplam - toplamKDV.recordset[0].KDV_Toplam, 2).toString()
         toplamFis = toplamFis.recordset[0].Fis_Toplam.toString()
@@ -63,14 +71,21 @@ async function connectDB() {
             "SalesFrequency": "Daily"
         })
         sql.close();
+	bilgiGonder();
 
     } catch (err) {
         console.error("Database connection failed!", err);
     }
 }
 
+function log() {
+	console.log(formattedYesterday)
+	console.log(toplamFis)
+	console.log(gunlukCiro)
+}
 
-function execute() {
+
+function bilgiGonder() {
     const options = {
         url: "https://api.emaar.com/emaar/trky/sales",
         method: "POST",
@@ -102,4 +117,3 @@ function execute() {
 }
 
 connectDB();
-// execute();
